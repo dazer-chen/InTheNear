@@ -2,4 +2,4 @@ In The Near -- an Android application.
 
 The purpose of In The Near (from here on out referred to as "the app" or "this app") is to provide the user with information about local amenities.
 The app will use the Google Maps API to get information about businesses and services in the local area or local to any of the user's saved locations.
-The app will be (initially) built against the Android 2.1 API for best compatibility.
+The app will be (initially) built against the Android 2.1 API/Google API level 7 for best compatibility.
