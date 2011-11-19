@@ -3,3 +3,4 @@
 .git/*
 .settings/*
 META-INF/*
+bin/*
