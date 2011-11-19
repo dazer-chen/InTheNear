@@ -3,7 +3,7 @@
 
     <string name="hello">Hello World, InTheNearActivity!</string>
     <string name="app_name">In The Near</string>
-    <string name="location_list_head">Your Locations</string>
-    <string name="big_blue_button">Add Location</string>
+    <string name="location_list_button">Your Locations</string>
+    <string name="add_location_button">Add Location</string>
 
 </resources>
