@@ -28,7 +28,8 @@
         
         <activity
             android:label="@string/app_name"
-            android:name=".ITNLocationListView" />
+            android:name=".ITNLocationListView"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
 
         </application>
 
