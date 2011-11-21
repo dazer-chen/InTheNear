@@ -10,8 +10,8 @@ public class ITNDatabaseHelper extends SQLiteOpenHelper {
 	private static final String DATABASE_NAME = "inthenear_applicationdata";
 	private static final int DATABASE_VERSION = 1;
 	// DB creation SQL statement -- creates two tables; location and point_of_interest
-	private static final String DATABASE_CREATE = "create table location (id integer primary key autoincrement, label text not null, longitude numeric not null, latitude numeric not null);"
-		+ "create table point_of_interest (id integer primary key autoincrement, label text not null, longitude numeric not null, latitude numeric not null, loc_id integer not null);";
+	private static final String DATABASE_CREATE = "create table location if not exists (id integer primary key autoincrement, label text not null, longitude numeric not null, latitude numeric not null);"
+		+ "create table point_of_interest if not exists (id integer primary key autoincrement, label text not null, longitude numeric not null, latitude numeric not null, loc_id integer not null);";
 
 	public ITNDatabaseHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
