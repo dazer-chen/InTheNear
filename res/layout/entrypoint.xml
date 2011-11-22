@@ -8,13 +8,15 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/location_list_button"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:onClick="callIntentByView" />
     
     <Button android:id="@+id/add_location_button" 
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/add_location_button"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:onClick="callIntentByView" />
 
     
 

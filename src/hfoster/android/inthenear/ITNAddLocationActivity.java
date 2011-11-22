@@ -16,6 +16,9 @@ public class ITNAddLocationActivity extends Activity {
 	private String provider;
 	private TextView longitudeField;
 	private TextView latitudeField;
+	private TextView locationDescField;
+	private final Button addLocButton = (Button) findViewById(R.id.add_location_button);
+	private final Button getCurrLocButton = (Button) findViewById(R.id.get_curr_loc_button);
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -25,19 +28,25 @@ public class ITNAddLocationActivity extends Activity {
 		locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		Criteria criteria = new Criteria();
 		provider = locationManager.getBestProvider(criteria, false);
-		Location location = locationManager.getLastKnownLocation(provider);
 		
 		longitudeField = (TextView) findViewById(R.id.longitude);
 		latitudeField = (TextView) findViewById(R.id.latitude);
-		longitudeField.setText((char) location.getLongitude());
-		latitudeField.setText((char) location.getLatitude());
+		locationDescField = (TextView) findViewById(R.id.label);
 		
-		final Button addLocButton = (Button) findViewById(R.id.add_location_button);
+		getCurrLocButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Location location = locationManager.getLastKnownLocation(provider);
+				longitudeField.setText((char) location.getLongitude());
+				latitudeField.setText((char) location.getLatitude());
+			}
+		});
+		
 		addLocButton.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				
 			}
 		});
 	}
