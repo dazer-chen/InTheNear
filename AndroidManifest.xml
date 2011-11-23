@@ -15,6 +15,7 @@
         android:label="@string/app_name"
         android:debuggable="true" >
         <uses-library android:name="com.google.android.maps" />
+
         <activity
             android:label="@string/app_name"
             android:name=".ITNEntryPointActivity" >
@@ -27,27 +28,12 @@
         <activity
             android:label="@string/app_name"
             android:name=".ITNGoogleMapActivity"
-            android:theme="@android:style/Theme.NoTitleBar" />
-        
-        <activity
-            android:label="@string/app_name"
-            android:name=".ITNLocationListView"
-            android:theme="@android:style/Theme.Light" >
-            <intent-filter >
-                <action android:name="hfoster.android.inthenear.intent.action.SHOW" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-         </activity>
-        
-        <activity
-            android:label="@string/app_name"
-            android:name=".ITNAddLocationActivity" >
-            <intent-filter >
-                <action android:name="hfoster.android.inthenear.intent.action.ADD_LOCATION" />
-                <category android:name="android.intent.category.DEFAULT" />
+            android:theme="@android:style/Theme.NoTitleBar" >
+            <intent-filter>
+                
             </intent-filter>
         </activity>
-
-        </application>
+        
+	</application>
 
 </manifest>
