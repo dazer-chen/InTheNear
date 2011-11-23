@@ -11,11 +11,8 @@ public class ITNDbAdapter {
 	// Database fields
 	public static final String KEY_ID = "id";
 	public static final String KEY_LABEL = "label";
-	public static final String KEY_LONGITUDE = "longitude";
-	public static final String KEY_LATITUDE = "latitude";
-	public static final String KEY_LOC_ID = "loc_id";
-	private static final String T1_DATABASE_TABLE = "location";
-	private static final String T2_DATABASE_TABLE = "point_of_interest";
+	public static final String KEY_ACTIVE = "active";
+	private static final String DATABASE_TABLE = "search_terms";
 	private Context context;
 	private SQLiteDatabase database;
 	private ITNDatabaseHelper dbHelper;
@@ -37,21 +34,16 @@ public class ITNDbAdapter {
 	/*
 	 * Create new row. If successful, return the new row ID. Otherwise return -1.
 	 */
-	public long createRow(String label, double longitude, double latitude, String table) {
-		ContentValues initialValues = createContentValues(label, longitude, latitude);
-		return database.insert(table, null, initialValues);
-	}
-	
-	public long createRow(String label, double longitude, double latitude, int locId, String table) {
-		ContentValues initialValues = createContentValues(label, longitude, latitude, locId);
+	public long createRow(String label, String active, String table) {
+		ContentValues initialValues = createContentValues(label, active);
 		return database.insert(table, null, initialValues);
 	}
 	
 	/*
 	 * Update a row.
 	 */
-	public boolean updateRow(long rowId, String label, double longitude, double latitude, String table) {
-		ContentValues updateValues = createContentValues(label, longitude, latitude);
+	public boolean updateRow(long rowId, String label, String active, String table) {
+		ContentValues updateValues = createContentValues(label, active);
 		return database.update(table, updateValues, KEY_ID + "=" + rowId, null) > 0;
 	}
 	
@@ -63,26 +55,18 @@ public class ITNDbAdapter {
 	}
 	
 	/*
-	 * Return Cursor over all Locations.
+	 * Return Cursor over all search terms.
 	 */
-	public Cursor fetchAllLocations() {
-		return database.query(T1_DATABASE_TABLE, new String[] { KEY_ID, KEY_LABEL, KEY_LONGITUDE, KEY_LATITUDE }, 
+	public Cursor fetchAllSearchTerms() {
+		return database.query(DATABASE_TABLE, new String[] { KEY_ID, KEY_LABEL, KEY_ACTIVE }, 
 				null, null, null, null, null);
 	}
 	
 	/*
-	 * Return Cursor over all points of interest.
+	 * Return Cursor positioned at defined search term.
 	 */
-	public Cursor fetchAllPointOfInterest() {
-		return database.query(T2_DATABASE_TABLE, new String[] { KEY_ID, KEY_LABEL, KEY_LONGITUDE, KEY_LATITUDE, KEY_LOC_ID }, 
-				null, null, null, null, null);
-	}
-	
-	/*
-	 * Return Cursor positioned at defined Location.
-	 */
-	public Cursor fetchLocation(long rowId) throws SQLException {
-		Cursor cursor = database.query(true, T1_DATABASE_TABLE, new String[] { KEY_ID, KEY_LABEL, KEY_LONGITUDE, KEY_LATITUDE }, 
+	public Cursor fetchSearchTerm(long rowId) throws SQLException {
+		Cursor cursor = database.query(true, DATABASE_TABLE, new String[] { KEY_ID, KEY_LABEL, KEY_ACTIVE }, 
 				KEY_ID + "=" + rowId, null, null, null, null, null);
 		if (cursor != null) {
 			cursor.moveToFirst();
@@ -90,32 +74,11 @@ public class ITNDbAdapter {
 		return cursor;
 	}
 	
-	/*
-	 * Return Cursor positioned at defined point of interest.
-	 */
-	public Cursor fetchPointOfInterest(long rowId) throws SQLException {
-		Cursor cursor = database.query(true, T2_DATABASE_TABLE, new String[] { KEY_ID, KEY_LABEL, KEY_LONGITUDE, KEY_LATITUDE, KEY_LOC_ID },
-				KEY_ID + "=" + rowId, null, null, null, null, null);
-		if (cursor != null) {
-			cursor.moveToFirst();
-		}
-		return cursor;
-	}
-
-	private ContentValues createContentValues(String label, double longitude, double latitude) {
+	private ContentValues createContentValues(String label, String active) {
 		ContentValues values = new ContentValues();
 		values.put(KEY_LABEL, label);
-		values.put(KEY_LONGITUDE, longitude);
-		values.put(KEY_LATITUDE, latitude);
+		values.put(KEY_ACTIVE, active);
 		return values;
 	}
 
-	private ContentValues createContentValues(String label, double longitude, double latitude, int locId) {
-		ContentValues values = new ContentValues();
-		values.put(KEY_LABEL, label);
-		values.put(KEY_LONGITUDE, longitude);
-		values.put(KEY_LATITUDE, latitude);
-		values.put(KEY_LOC_ID, locId);
-		return values;
-	}
 }

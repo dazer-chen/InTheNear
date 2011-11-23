@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="hello">Hello World, InTheNearActivity!</string>
     <string name="app_name">In The Near</string>
-    <string name="location_list_button">Your Locations</string>
-    <string name="add_location_button">Add Location</string>
 
 </resources>

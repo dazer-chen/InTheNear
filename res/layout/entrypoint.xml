@@ -4,20 +4,4 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
     
-    <Button android:id="@+id/location_list_button"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/location_list_button"
-        android:textStyle="bold"
-        android:onClick="callIntentByView" />
-    
-    <Button android:id="@+id/add_location_button" 
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/add_location_button"
-        android:textStyle="bold"
-        android:onClick="callIntentByView" />
-
-    
-
 </LinearLayout>
