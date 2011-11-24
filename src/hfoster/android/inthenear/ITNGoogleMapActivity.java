@@ -1,8 +1,10 @@
 package hfoster.android.inthenear;
 
-import com.google.android.maps.MapActivity;
-
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+
+import com.google.android.maps.MapActivity;
 
 public class ITNGoogleMapActivity extends MapActivity {
 	
@@ -10,6 +12,12 @@ public class ITNGoogleMapActivity extends MapActivity {
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.googlemaps);
+	}
+	
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.mainmenu, menu);
+		return true;
 	}
 
 	@Override

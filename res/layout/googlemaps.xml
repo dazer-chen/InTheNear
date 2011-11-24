@@ -5,6 +5,8 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:clickable="true"
-    android:apiKey="0H9O8FHhvk4rTjRQlyuxxOmiuzkKOAK-uyHfOQw" />
+    android:apiKey="0H9O8FHhvk4rTjRQlyuxxOmiuzkKOAK-uyHfOQw" >
 
     <!-- Remember to replace Debug key with App key. -->
+
+</com.google.android.maps.MapView>
