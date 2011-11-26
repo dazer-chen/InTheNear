@@ -29,7 +29,8 @@
             android:label="@string/app_name"
             android:name=".ITNSettingsActivity" >
             <intent-filter >
-                
+                <action android:name="hfoster.android.inthenear.intent.ITN_SETTINGS" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 

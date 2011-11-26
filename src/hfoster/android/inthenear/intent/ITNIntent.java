@@ -7,7 +7,7 @@ public class ITNIntent extends Intent {
 	public ITNIntent(String action) {
 		super(action);
 	}
-	public static final String ACTION_SHOW = "hfoster.android.inthenear.intent.action.SHOW";
-	public static final String ACTION_ADD_LOCATION = "hfoster.android.inthenear.intent.action.ADD_LOCATION";
+	
+	public static final String ACTION_ITN_SETTINGS = "hfoster.android.inthenear.intent.ITN_SETTINGS";
 
 }

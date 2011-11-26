@@ -1,23 +1,60 @@
 package hfoster.android.inthenear;
 
+import hfoster.android.inthenear.intent.ITNIntent;
+
+import java.util.List;
+
+import android.content.Context;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 
+import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
+import com.google.android.maps.MapController;
+import com.google.android.maps.MapView;
+import com.google.android.maps.Overlay;
 
 public class ITNGoogleMapActivity extends MapActivity {
+	
+	static GeoPoint currLoc;
+	static MapView mapView;
+	static MapController mapCtrl;
+	static LocationManager locMgr;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.googlemaps);
+        mapView = (MapView) findViewById(R.id.mapview);
+        mapView.setBuiltInZoomControls(true);
+        mapCtrl = mapView.getController();
+        locMgr = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        List<Overlay> mapOverlays = mapView.getOverlays();
 	}
 	
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.mainmenu, menu);
 		return true;
+	}
+	
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle item selection for menu -- i.e. refresh the screen or go to Settings
+		switch (item.getItemId()) {
+		case R.id.refresh:
+			// Refresh mapView to current location and search for active search terms
+			return true;
+		case R.id.settings:
+			// Create and pass an Intent to open the Settings Activity
+			ITNIntent intent = new ITNIntent(ITNIntent.ACTION_ITN_SETTINGS);
+			startActivity(intent);
+			return true;
+		default:
+			return onOptionsItemSelected(item);
+		}
 	}
 
 	@Override
