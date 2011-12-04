@@ -11,6 +11,7 @@ public class ITNLocationListener implements LocationListener {
 	private double latitude;
 	private String provider;
 	private Location location;
+	private boolean locationChanged;
 
 	public ITNLocationListener() {
 		// Does nothing special
@@ -27,6 +28,13 @@ public class ITNLocationListener implements LocationListener {
 	}
 
 	private void updateWithNewLocation(Location location) {
+		if (this.location.getLatitude() != location.getLatitude() && this.location.getLongitude() != location.getLongitude()) {
+			this.setLocationChanged(true);
+		}
+		else {
+			this.setLocationChanged(false);
+		}
+		
 		this.setLatitude(location.getLatitude());
 		this.setLongitude(location.getLongitude());
 		this.setProvider(location.getProvider());
@@ -35,25 +43,17 @@ public class ITNLocationListener implements LocationListener {
 
 	@Override
 	public void onProviderDisabled(String provider) {
-		if (provider == LocationManager.GPS_PROVIDER) {
-			this.setProvider(LocationManager.NETWORK_PROVIDER);
-		}
-		else if (provider == LocationManager.NETWORK_PROVIDER) {
-			this.setProvider(LocationManager.GPS_PROVIDER);
-		}
-		else {
-			this.setProvider(null);
-		}
+	
 	}
 
 	@Override
 	public void onProviderEnabled(String provider) {
-		this.setProvider(provider);
+	
 	}
 
 	@Override
 	public void onStatusChanged(String provider, int status, Bundle extras) {
-		this.setProvider(provider);
+
 	}
 
 	// Accessor methods for private fields
@@ -88,6 +88,14 @@ public class ITNLocationListener implements LocationListener {
 
 	public Location getLocation() {
 		return location;
+	}
+
+	public void setLocationChanged(boolean locationChanged) {
+		this.locationChanged = locationChanged;
+	}
+
+	public boolean isLocationChanged() {
+		return locationChanged;
 	}
 
 }
