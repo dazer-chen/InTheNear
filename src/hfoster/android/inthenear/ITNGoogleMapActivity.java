@@ -24,7 +24,7 @@ public class ITNGoogleMapActivity extends MapActivity {
 	
 	static GeoPoint currLoc;
 	static MapView mapView;
-	static MapController mapCtrl;
+	static MapController mapCtrlr;
 	static LocationManager locMgr;
 	static Location loc;
 	static ITNLocationListener locListener;
@@ -35,7 +35,7 @@ public class ITNGoogleMapActivity extends MapActivity {
         setContentView(R.layout.googlemaps);
         mapView = (MapView) findViewById(R.id.mapview);
         mapView.setBuiltInZoomControls(true);
-        mapCtrl = mapView.getController();
+        mapCtrlr = mapView.getController();
         locMgr = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         loc = locMgr.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         locListener = new ITNLocationListener();
